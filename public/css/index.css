@@ -1,0 +1,119 @@
+.blackBar {
+    position: absolute;
+    width: 836px;
+    height: 85px;
+    left: -1px;
+    top: 1108px;
+
+    background: #000000;
+}
+
+.barText{
+    position: absolute;
+    width: 561px;
+    height: 48px;
+    left: 200px;
+    top: 1128;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+
+    color: white;
+}
+
+.video {
+    display: block;
+    margin-top: -1px;
+    margin-left: -1px;
+    margin-right: -1px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.addUserBtn {
+    margin: 10px;
+    width: 100%;
+    height: 50px;
+    font-size: larger;
+    background-color: rgb(143, 137, 133);
+}
+
+.paymentBtn {
+    margin: 10px;
+    width: 25%;
+    height: 50px;
+    font-size: larger;
+}
+
+.paymentConfirmation {
+    text-align: center;
+    margin-top: 11%;
+}
+
+.customerName {
+    margin-top: 10%;
+}
+
+.transactionAmount {
+    margin: 62px;
+}
+
+.fingerprint {
+    margin-top: 100px;
+}
+
+.paymentSuccess {
+    position: absolute;
+    width: 347px;
+    height: 42px;
+    left: 266px;
+    top: 601px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 42px;
+    color: #000000;
+}
+
+.successMessage1 {
+    position: absolute;
+    width: 419px;
+    height: 36px;
+    left: 207px;
+    top: 875px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.successMessage2 {
+    position: absolute;
+    width: 373px;
+    height: 73px;
+    left: 230px;
+    top: 904px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 60px;
+    line-height: 73px;
+    /* identical to box height */
+
+
+    color: #000000;
+}

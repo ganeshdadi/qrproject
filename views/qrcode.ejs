@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Page</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="js/qrcode.js"></script>
+    <link rel="stylesheet" href="css/mystyle.css">
+</head>
+<body>
+    <div id="qrcode"></div>
+
+    <script type="text/javascript">
+        var qrcode = new QRCode("qrcode");
+
+        function makeCode () {    
+            var otp = Math.floor(100000 + Math.random() * 900000);
+            qrcode.makeCode('' + otp);
+        }   
+
+        makeCode();
+
+        $(function ()
+        {
+            //var statusElement = $("#status");
+
+            // this function will run each 1000 ms until stopped with clearInterval()
+            var i = setInterval(function ()
+            {
+                $.ajax(
+                {
+                    url: '/qrcodereadstatus',
+                    success: function (json)
+                    {
+                        // progress from 1-100
+                        console.log('Response: ' + json)
+
+                        // when the worker process is done (reached 100%), stop execution
+                        if (json.qrcodereadstatus == true)  {
+                            clearInterval(i);
+                            console.log('Response recieved true')
+                            window.location = '/paymentdone';
+                        }
+                    },
+
+                    error: function ()
+                    {
+                        // on error, stop execution
+                        clearInterval(i);
+                    },
+                    contentType: 'application/json'
+                });
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

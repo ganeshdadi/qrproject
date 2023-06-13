@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Make Payment</title>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/qrcode.js"></script>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-danger">
+        <a class="navbar-brand" style="font-size: 30px;color: white">WELLS FARGO</a>
+        <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Accounts <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Brokerage</a>
+            </li>
+            <li class="nav-item active" >
+              <a class="nav-link" href="#">Transfer & Pay</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Support</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Settings</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown01">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success bg-white my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+
+      <div style="margin-top: 100px;"></div>
+
+   <main role="main" class="container mt-100">
+       <div class="my-3 p-3 bg-white rounded box-shadow mt-100" >
+           <div style="margin-bottom: 30px;">
+               <h3>Scan below code to complete payment</h3>
+           </div>
+           <div style="margin-top:50px;margin-bottom: 50px;">
+                <div class="col-md-6 col-sm-12">
+                    <div id="qrcode"></div>
+                </div>
+            </div>
+
+       </div>
+   </div>
+
+   <footer class="bg-light text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2023 Copyright
+      <a class="text-dark" href="https://www.wellsfargo.com/">Wells Fargo</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/qrcode.js"></script>
+
+    <script type="text/javascript">
+        var qrcode = new QRCode("qrcode");
+
+        function makeCode () {    
+            var otp = Math.floor(100000 + Math.random() * 900000);
+            qrcode.makeCode('' + otp);
+        }   
+
+        makeCode();
+
+        $(function ()
+        {
+            //var statusElement = $("#status");
+
+            // this function will run each 1000 ms until stopped with clearInterval()
+            var i = setInterval(function ()
+            {
+                $.ajax(
+                {
+                    url: '/qrcodereadstatus',
+                    success: function (json)
+                    {
+                        // progress from 1-100
+                        console.log('Response: ' + json)
+
+                        // when the worker process is done (reached 100%), stop execution
+                        if (json.qrcodereadstatus == true)  {
+                            clearInterval(i);
+                            console.log('Response recieved true')
+                            window.location = '/paymentdonen';
+                        }
+                    },
+
+                    error: function ()
+                    {
+                        // on error, stop execution
+                        clearInterval(i);
+                    },
+                    contentType: 'application/json'
+                });
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Make Payment</title>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+   <!-- <link rel="stylesheet" type="text/css" href="css/newStyles.css"> -->
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-danger">
+        <a class="navbar-brand" style="font-size: 30px;color: white">WELLS FARGO</a>
+        <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Accounts <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Brokerage</a>
+            </li>
+            <li class="nav-item active" >
+              <a class="nav-link" href="#">Transfer & Pay</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Support</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Settings</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown01">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success bg-white my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+
+      <!--
+      <div class="nav-scroller bg-white box-shadow">
+      <nav class="nav nav-underline">
+        <a class="nav-link active" href="#">Dashboard</a>
+        <a class="nav-link" href="#">
+          Friends
+          <span class="badge badge-pill bg-light align-text-bottom">27</span>
+        </a>
+        <a class="nav-link" href="#">Explore</a>
+        <a class="nav-link" href="#">Suggestions</a>
+        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="#">Link</a>
+      </nav>
+      </div>
+      -->
+
+      <div style="margin-top: 100px;"></div>
+
+   <main role="main" class="container mt-100">
+       <div class="my-3 p-3 bg-white rounded box-shadow mt-100" >
+           <div style="margin-bottom: 30px;">
+               <h2>Start Payment</h2>
+           </div>
+           <div>
+                <div class="col-md-6 col-sm-12">
+                <div class="login-form">
+                    <form action="/qrcodepagen" method="post">
+                        <!--
+                        <div class="form-group">
+                            <label>From Account:</label>
+                            <input type="text" class="form-control" placeholder="From Account">
+                        </div>
+                        -->
+                        
+                        <div>
+                        <label><b>From</b></label>
+                        <div></div>
+                        <select style="width:400px;height:50px" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                            <option selected>Select Account</option>
+                            <option value="1">PREFERRED CHECKING ..0396</option>
+                            <option value="2">PREFERRED CHECKING ..0397</option>
+                            <option value="3">PREFERRED CHECKING ..0398</option>
+                            <option value="3">PROPEL AMERICAN EXPRESS ..1506</option>
+                          </select>
+                        </div>
+
+                        <div style="margin-top:10px">
+                            <label><b>To</b></label>
+                            <div></div>
+                            <select style="width:400px;height:50px" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                                <option selected>Select Account</option>
+                                <option value="1">PREFERRED CHECKING ..0396</option>
+                                <option value="2">PREFERRED CHECKING ..0397</option>
+                                <option value="3">PREFERRED CHECKING ..0398</option>
+                                <option value="3">PROPEL AMERICAN EXPRESS ..1506</option>
+                              </select>
+                        </div>
+
+                        <div style="margin-top:20px">
+                            <label><b>Frequency</b></label>
+                            <div></div>
+                            <select style="width:400px;height:50px" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                                <option selected>Once</option>
+                                <option value="1">Weekly</option>
+                                <option value="2">Every Two Weeks</option>
+                                <option value="3">Twice a month</option>
+                                <option value="3">Monthly</option>
+                              </select>
+                        </div>
+
+                        <div style="margin-top:20px" class="form-group">
+                            <label><b>Amount ($)</b></label>
+                            <input type="number" style="width:200px;height:50px" class="form-control">
+                        </div>
+                        
+                        <div style="margin-top: 40px"></div>
+
+                        <button type="submit" style="height:50px" class="btn btn-secondary">Continue</button>
+                        <button type="submit" style="height:50px;margin-left:20px" class="btn btn-black">Cancel</button>
+                    </form>
+                </div>
+                </div>
+            </div>
+
+            <!--
+           <footer class="footer">
+               <div class="logo">
+                 <img src="static/logo.png" alt="Logo">  
+               </div>
+               <div class="fargopay">Welcome</div>
+             </footer>
+            -->
+       </div>
+   </div>
+
+   <footer class="bg-light text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2023 Copyright
+      <a class="text-dark" href="https://www.wellsfargo.com/">Wells Fargo</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

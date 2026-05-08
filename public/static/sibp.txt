@@ -94,3 +94,317 @@ Expected Benefits:
 
 Security Consideration:
 The proposal is for a separate isolated sandbox/non-production environment with no customer or production data access. The environment can remain fully segregated from enterprise production systems while still enabling controlled innovation and experimentation.
+
+
+Slide 2 — Why Traditional Security Is No Longer Enough
+
+Traditional banking security was designed for:
+
+human users,
+
+deterministic applications,
+
+fixed workflows,
+
+predictable system behavior.
+
+
+AI agents behave fundamentally differently:
+
+they reason probabilistically,
+
+dynamically decide next steps,
+
+chain multiple tools together,
+
+adapt workflows in real time.
+
+
+Current security systems mainly answer:
+
+“Is this the correct user?”
+
+“Is the password/session valid?”
+
+
+They do NOT answer:
+
+“Is the AI still pursuing the original approved goal?”
+
+“Has the AI been manipulated mid-workflow?”
+
+“Should this action still be allowed in this context?”
+
+
+AI agents can inherit the same permissions as the user:
+
+banking access,
+
+logged-in sessions,
+
+financial APIs,
+
+corporate systems,
+
+sensitive documents.
+
+
+This creates a new risk model where:
+
+authenticated actions can still be malicious,
+
+valid sessions can still execute fraud,
+
+compromised reasoning can bypass traditional controls.
+
+
+Example risks:
+
+hidden prompt injection in PDFs/emails/websites,
+
+unauthorized beneficiary changes,
+
+bulk customer data extraction,
+
+manipulated investment decisions,
+
+autonomous high-value transfers.
+
+
+Traditional fraud detection often works after execution.
+
+AI agents can execute thousands of actions before humans notice anomalies.
+
+
+The industry needs a shift from:
+
+identity-centric security
+
+to intent-centric security.
+
+
+
+
+---
+
+Slide 3 — Introducing the Sentinel Intent-Binding Plane (SIBP)
+
+The Sentinel Intent-Binding Plane (SIBP) is a governance and security layer designed for autonomous AI agents interacting with banking systems.
+
+SIBP sits between:
+
+AI agents,
+
+MCP banking tools/APIs,
+
+core financial systems.
+
+
+The goal of SIBP is to ensure:
+
+AI actions remain aligned with approved human intent,
+
+autonomous actions stay within policy boundaries,
+
+high-risk actions are contextually validated before execution.
+
+
+SIBP introduces five core architectural controls:
+
+
+1. Intent Binding
+
+Converts human goals into machine-verifiable intent mandates.
+
+Ensures AI actions remain tied to original approved objectives.
+
+
+2. Semantic Decision Tokens (SDT)
+
+Short-lived, single-use authorization tokens.
+
+Only issued if the requested action matches approved intent and policy.
+
+
+3. Contextual Permissioning
+
+Permissions dynamically change based on:
+
+location,
+
+device trust,
+
+risk level,
+
+transaction amount,
+
+time of access.
+
+
+
+4. Hardware-Anchored Approval
+
+High-risk actions require:
+
+biometric approval,
+
+hardware security key confirmation,
+
+physical human verification.
+
+
+
+5. Immutable Decision Provenance
+
+Agent reasoning and authorization events are recorded in a tamper-resistant distributed ledger.
+
+Provides regulator-grade auditability and forensic traceability.
+
+SIBP changes the trust model from:
+
+“Trust the authenticated session”
+
+to
+
+“Trust only verified intent-bound execution.”
+
+
+
+
+---
+
+Slide 4 — How SIBP Protects Autonomous Banking Workflows
+
+Every autonomous banking action follows a controlled verification flow before execution.
+
+
+Step 1 — Human or Policy Defines Intent
+
+Examples:
+
+“Pay approved invoices”
+
+“Auto-pay utility bills below ₹5,000”
+
+“Maintain low-risk investment strategy”
+
+SIBP converts these into structured intent mandates.
+
+
+
+---
+
+Step 2 — Agent Initiates Banking Action
+
+The AI agent:
+
+reads emails/documents,
+
+reasons about next steps,
+
+invokes MCP banking tools.
+
+
+Example:
+
+mcp.bank.transfer_funds()
+
+
+---
+
+Step 3 — SIBP Validates Intent Consistency
+
+SIBP checks:
+
+Does the requested action match the original goal?
+
+Is the recipient expected?
+
+Is the amount within approved limits?
+
+Is the behavior contextually safe?
+
+
+
+---
+
+Step 4 — Context & Risk Evaluation
+
+Additional checks include:
+
+geolocation,
+
+device trust,
+
+time of day,
+
+unusual behavior,
+
+transaction risk level,
+
+policy violations.
+
+
+
+---
+
+Step 5 — Decision Provenance Logged
+
+Reasoning traces and authorization decisions are stored in an immutable distributed ledger:
+
+original intent,
+
+requested action,
+
+validation outcome,
+
+approval chain,
+
+policy evaluation.
+
+
+
+---
+
+Step 6 — Semantic Decision Token (SDT) Issued
+
+Only if all checks pass:
+
+SIBP issues a short-lived authorization token.
+
+MCP banking tools execute only with valid SDTs.
+
+
+
+---
+
+Step 7 — High-Risk Actions Trigger Human Step-Up
+
+Examples:
+
+beneficiary changes,
+
+high-value transfers,
+
+bulk data access.
+
+
+These require:
+
+hardware MFA,
+
+biometric confirmation,
+
+explicit human approval.
+
+
+
+---
+
+SIBP ensures that:
+
+autonomous agents remain governed,
+
+financial actions remain bounded,
+
+compromised reasoning cannot directly execute banking operations.

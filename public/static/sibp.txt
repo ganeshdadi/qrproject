@@ -1,4 +1,4 @@
-Architectural Controls for OS-Level Autonomous Agents in the Banking Sector: A Synthesis of Blockchain Ledgers, Contextual Permissioning, and Multi-Factor AuthorityThe global financial infrastructure is approaching a technological event horizon where the primary interface for banking shifts from human-operated applications to autonomous agents residing within the operating system (OS). These OS-level agents—integrated into platforms such as Windows 11, iOS, and bespoke hardware—are transitioning from passive information retrievers into active economic participants capable of executing multi-step financial workflows. While this evolution promises unprecedented efficiency, it introduces a "lethal trifecta" of systemic risks: probabilistic prompt injection vulnerabilities, autonomous execution capacity, and privileged access to sensitive financial resources.Traditional cybersecurity frameworks, which rely on deterministic rule sets, are fundamentally ill-equipped to govern the stochastic reasoning of large language models (LLMs) that power these agents. This report details a novel, integrated control architecture known as the Sentinel Intent-Binding Plane (SIBP). By synthesizing blockchain-based activity ledgers, context-aware permissioning, and hardware-anchored multi-factor agent authentication, the SIBP provides a verifiable governance layer that ensures agent actions remain strictly bounded by human intent.The Sentinel Intent-Binding Plane (SIBP) ArchitectureThe SIBP acts as a non-bypassable "Control Plane" positioned between the OS-level agent and the bank's core APIs. It is designed to solve the "messy middle" of banking—the whitespace between fragmented systems where 80% of operational risks and handoff errors occur.High-Level System OverviewThe following diagram illustrates how the SIBP orchestrates the interaction between the OS Agent and the Financial Institution.Code snippetgraph TD
+oArchitectural Controls for OS-Level Autonomous Agents in the Banking Sector: A Synthesis of Blockchain Ledgers, Contextual Permissioning, and Multi-Factor AuthorityThe global financial infrastructure is approaching a technological event horizon where the primary interface for banking shifts from human-operated applications to autonomous agents residing within the operating system (OS). These OS-level agents—integrated into platforms such as Windows 11, iOS, and bespoke hardware—are transitioning from passive information retrievers into active economic participants capable of executing multi-step financial workflows. While this evolution promises unprecedented efficiency, it introduces a "lethal trifecta" of systemic risks: probabilistic prompt injection vulnerabilities, autonomous execution capacity, and privileged access to sensitive financial resources.Traditional cybersecurity frameworks, which rely on deterministic rule sets, are fundamentally ill-equipped to govern the stochastic reasoning of large language models (LLMs) that power these agents. This report details a novel, integrated control architecture known as the Sentinel Intent-Binding Plane (SIBP). By synthesizing blockchain-based activity ledgers, context-aware permissioning, and hardware-anchored multi-factor agent authentication, the SIBP provides a verifiable governance layer that ensures agent actions remain strictly bounded by human intent.The Sentinel Intent-Binding Plane (SIBP) ArchitectureThe SIBP acts as a non-bypassable "Control Plane" positioned between the OS-level agent and the bank's core APIs. It is designed to solve the "messy middle" of banking—the whitespace between fragmented systems where 80% of operational risks and handoff errors occur.High-Level System OverviewThe following diagram illustrates how the SIBP orchestrates the interaction between the OS Agent and the Financial Institution.Code snippetgraph TD
     subgraph "User Environment (OS Level)"
         A
         B
@@ -408,3 +408,68 @@ autonomous agents remain governed,
 financial actions remain bounded,
 
 compromised reasoning cannot directly execute banking operations.
+--
+Slide 5 — SIBP Reference Architecture
+
+flowchart LR
+    U[User / Business Policy] --> A[OS-Level AI Agent]
+
+    A --> S[Local SIBP Sidecar]
+    S --> G[Bank SIBP Gateway]
+
+    G --> P[Policy Engine]
+    G --> C[Context Engine]
+    G --> M[Intent Verification Engine]
+    G --> L[Immutable Decision Ledger]
+    G --> H[Hardware / Biometric Approval]
+
+    P --> D[Semantic Decision Token Issuer]
+    C --> D
+    M --> D
+    H --> D
+
+    D --> T[Short-Lived SDT Token]
+
+    T --> MCP[Bank MCP Tools]
+    MCP --> API[Core Banking APIs]
+    API --> B[Bank Systems / Ledger / Payments]
+
+    L --> AUD[Audit / Compliance / Regulator View]
+
+    A -. Malicious input .-> X[Email / PDF / Website / External Data]
+    X -. Prompt Injection Risk .-> A
+
+Simple Explanation for the Slide
+
+The User or business policy defines what the AI agent is allowed to do.
+
+The OS-level AI agent performs tasks such as reading invoices, checking balances, or preparing payments.
+
+The Local SIBP Sidecar monitors the agent on the device and captures intent, reasoning, and proposed actions.
+
+The Bank SIBP Gateway is the main control point before any banking action is allowed.
+
+The gateway validates:
+
+original intent,
+
+current agent action,
+
+context signals,
+
+policy rules,
+
+risk level,
+
+human approval requirement.
+
+
+The Immutable Decision Ledger records important decisions, approvals, denials, and reasoning provenance.
+
+If all checks pass, the SDT Issuer creates a short-lived Semantic Decision Token.
+
+The Bank MCP Tools only execute requests that include a valid SDT.
+
+The Core Banking APIs never directly trust the AI agent.
+
+This ensures that even if the agent is manipulated by an email, PDF, or website, it cannot execute financial actions unless SIBP approves the intent-bound request.

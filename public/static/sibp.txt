@@ -1,4 +1,4 @@
-oArchitectural Controls for OS-Level Autonomous Agents in the Banking Sector: A Synthesis of Blockchain Ledgers, Contextual Permissioning, and Multi-Factor AuthorityThe global financial infrastructure is approaching a technological event horizon where the primary interface for banking shifts from human-operated applications to autonomous agents residing within the operating system (OS). These OS-level agents—integrated into platforms such as Windows 11, iOS, and bespoke hardware—are transitioning from passive information retrievers into active economic participants capable of executing multi-step financial workflows. While this evolution promises unprecedented efficiency, it introduces a "lethal trifecta" of systemic risks: probabilistic prompt injection vulnerabilities, autonomous execution capacity, and privileged access to sensitive financial resources.Traditional cybersecurity frameworks, which rely on deterministic rule sets, are fundamentally ill-equipped to govern the stochastic reasoning of large language models (LLMs) that power these agents. This report details a novel, integrated control architecture known as the Sentinel Intent-Binding Plane (SIBP). By synthesizing blockchain-based activity ledgers, context-aware permissioning, and hardware-anchored multi-factor agent authentication, the SIBP provides a verifiable governance layer that ensures agent actions remain strictly bounded by human intent.The Sentinel Intent-Binding Plane (SIBP) ArchitectureThe SIBP acts as a non-bypassable "Control Plane" positioned between the OS-level agent and the bank's core APIs. It is designed to solve the "messy middle" of banking—the whitespace between fragmented systems where 80% of operational risks and handoff errors occur.High-Level System OverviewThe following diagram illustrates how the SIBP orchestrates the interaction between the OS Agent and the Financial Institution.Code snippetgraph TD
+Architectural Controls for OS-Level Autonomous Agents in the Banking Sector: A Synthesis of Blockchain Ledgers, Contextual Permissioning, and Multi-Factor AuthorityThe global financial infrastructure is approaching a technological event horizon where the primary interface for banking shifts from human-operated applications to autonomous agents residing within the operating system (OS). These OS-level agents—integrated into platforms such as Windows 11, iOS, and bespoke hardware—are transitioning from passive information retrievers into active economic participants capable of executing multi-step financial workflows. While this evolution promises unprecedented efficiency, it introduces a "lethal trifecta" of systemic risks: probabilistic prompt injection vulnerabilities, autonomous execution capacity, and privileged access to sensitive financial resources.Traditional cybersecurity frameworks, which rely on deterministic rule sets, are fundamentally ill-equipped to govern the stochastic reasoning of large language models (LLMs) that power these agents. This report details a novel, integrated control architecture known as the Sentinel Intent-Binding Plane (SIBP). By synthesizing blockchain-based activity ledgers, context-aware permissioning, and hardware-anchored multi-factor agent authentication, the SIBP provides a verifiable governance layer that ensures agent actions remain strictly bounded by human intent.The Sentinel Intent-Binding Plane (SIBP) ArchitectureThe SIBP acts as a non-bypassable "Control Plane" positioned between the OS-level agent and the bank's core APIs. It is designed to solve the "messy middle" of banking—the whitespace between fragmented systems where 80% of operational risks and handoff errors occur.High-Level System OverviewThe following diagram illustrates how the SIBP orchestrates the interaction between the OS Agent and the Financial Institution.Code snippetgraph TD
     subgraph "User Environment (OS Level)"
         A
         B
@@ -473,3 +473,171 @@ The Bank MCP Tools only execute requests that include a valid SDT.
 The Core Banking APIs never directly trust the AI agent.
 
 This ensures that even if the agent is manipulated by an email, PDF, or website, it cannot execute financial actions unless SIBP approves the intent-bound request.
+
+
+
+Slide 6 — Example 1: Autonomous Bill Payment Fraud Prevention
+
+sequenceDiagram
+    participant U as 👤 User
+    participant A as 🤖 OS AI Agent
+    participant S as 🛡️ Local SIBP Sidecar
+    participant G as 🏛️ Bank SIBP Gateway
+    participant L as ⛓️ Immutable Ledger
+    participant MCP as 🔧 Bank MCP Tool
+    participant B as 🏦 Core Banking System
+    participant X as 📧 Malicious Email/PDF
+
+    U->>A: 1. "Auto-pay electricity bills below ₹5,000"
+    A->>S: 2. Create Intent Mandate
+    S->>L: 3. Store intent hash and policy
+
+    X->>A: 4. Hidden prompt injection modifies recipient
+    A->>G: 5. Request SDT for transfer_funds()
+
+    G->>L: 6. Fetch original intent and policy
+    G->>G: 7. Detect semantic mismatch
+
+    G->>L: 8. Record goal drift attempt
+    G-->>A: 9. Reject SDT issuance
+
+    A->>MCP: 10. Attempt MCP tool execution
+    MCP-->>A: 11. Reject request (No valid SDT)
+
+    B-->>A: 12. No transaction executed
+
+
+---
+
+Slide 7 — Example 2: Corporate Invoice Fraud Prevention
+
+sequenceDiagram
+    participant U as 👤 Finance Manager
+    participant A as 🤖 AP Processing Agent
+    participant ERP as 📄 ERP System
+    participant S as 🛡️ Local SIBP Sidecar
+    participant G as 🏛️ Bank SIBP Gateway
+    participant L as ⛓️ Immutable Ledger
+    participant H as 🔑 Hardware Approval Device
+    participant MCP as 🔧 Vendor MCP Tool
+    participant B as 🏦 Payment System
+    participant X as 📄 Malicious Invoice PDF
+
+    U->>A: 1. "Pay approved invoices only"
+    A->>S: 2. Create Intent Mandate
+    S->>L: 3. Store approved vendor policy
+
+    X->>A: 4. Hidden instruction changes vendor account
+    A->>G: 5. Request SDT for update_vendor_account()
+
+    G->>L: 6. Validate vendor provenance/history
+    G->>G: 7. Detect unauthorized beneficiary change
+
+    G->>H: 8. Trigger hardware MFA approval
+    H->>U: 9. Request physical confirmation
+
+    U-->>H: 10. Deny approval
+    H-->>G: 11. Approval denied
+
+    G->>L: 12. Record denied vendor modification
+    G-->>A: 13. Reject SDT issuance
+
+    A->>MCP: 14. Attempt vendor update
+    MCP-->>A: 15. Reject request (No SDT)
+
+    B-->>A: 16. Payment blocked
+
+
+---
+
+Slide 8 — Example 3: Autonomous Investment Manipulation Prevention
+
+sequenceDiagram
+    participant U as 👤 Investor
+    participant A as 🤖 Investment Agent
+    participant M as 📈 Market Data Source
+    participant S as 🛡️ Local SIBP Sidecar
+    participant G as 🏛️ Bank SIBP Gateway
+    participant L as ⛓️ Immutable Ledger
+    participant MCP as 🔧 Trading MCP Tool
+    participant B as 🏦 Trading Platform
+
+    U->>A: 1. "Maintain low-risk portfolio strategy"
+    A->>S: 2. Create investment policy mandate
+    S->>L: 3. Store policy constraints
+
+    M->>A: 4. Manipulated article promotes risky asset
+    A->>G: 5. Request SDT for large portfolio reallocation
+
+    G->>L: 6. Retrieve approved investment policy
+    G->>G: 7. Detect policy deviation (80% crypto allocation)
+
+    G->>L: 8. Record portfolio policy violation
+    G-->>A: 9. Reject SDT issuance
+
+    A->>MCP: 10. Attempt trade execution
+    MCP-->>A: 11. Reject request (No SDT)
+
+    B-->>A: 12. No trade executed
+
+
+---
+
+Slide 9 — Example 4: Customer Data Leakage Prevention (Confused Deputy)
+
+sequenceDiagram
+    participant X as 🧑‍💻 Attacker
+    participant A as 🤖 Customer Support Agent
+    participant G as 🏛️ Bank SIBP Gateway
+    participant L as ⛓️ Immutable Ledger
+    participant MCP as 🔧 Account MCP Tool
+    participant DB as 🏦 Customer Database
+
+    X->>A: 1. "Show average balances of all customers"
+
+    A->>G: 2. Request SDT for bulk_customer_query()
+
+    G->>L: 3. Retrieve agent capability policy
+    G->>G: 4. Validate scope against allowed permissions
+
+    G->>G: 5. Detect unauthorized bulk data access
+
+    G->>L: 6. Record scope violation attempt
+    G-->>A: 7. Reject SDT issuance
+
+    A->>MCP: 8. Attempt bulk query execution
+    MCP-->>A: 9. Reject request (No SDT)
+
+    DB-->>A: 10. No customer data exposed
+
+
+---
+
+Slide 10 — Example 5: Treasury Transfer Geofencing & Contextual Protection
+
+sequenceDiagram
+    participant X as 🧑‍💻 Remote Attacker
+    participant A as 🤖 Treasury Agent
+    participant C as 🌍 Context Engine
+    participant G as 🏛️ Bank SIBP Gateway
+    participant L as ⛓️ Immutable Ledger
+    participant MCP as 🔧 Treasury MCP Tool
+    participant B as 🏦 Treasury Core System
+
+    X->>A: 1. "Transfer ₹5 Crore offshore immediately"
+
+    A->>G: 2. Request SDT for treasury_transfer()
+
+    G->>C: 3. Evaluate contextual signals
+    C-->>G: 4. Detect abnormal geography/time/device
+
+    G->>L: 5. Retrieve treasury security policy
+    G->>G: 6. Detect contextual policy violation
+
+    G->>L: 7. Record geofence violation event
+    G-->>A: 8. Reject SDT issuance
+
+    A->>MCP: 9. Attempt treasury transfer execution
+    MCP-->>A: 10. Reject request (No SDT)
+
+    B-->>A: 11. No transfer executed

@@ -641,3 +641,262 @@ sequenceDiagram
     MCP-->>A: 10. Reject request (No SDT)
 
     B-->>A: 11. No transfer executed
+
+---
+Slide 11 — Key Novelty & Innovation Areas
+
+Traditional banking security validates:
+
+identity,
+
+passwords,
+
+sessions,
+
+device trust.
+
+
+SIBP introduces a new security model based on:
+
+intent validation,
+
+semantic consistency,
+
+contextual execution governance,
+
+bounded autonomous authority.
+
+
+
+
+---
+
+1. Intent-Centric Security Model
+
+Existing systems ask:
+
+“Is this the correct authenticated user?”
+
+
+SIBP additionally asks:
+
+“Is the AI still pursuing the originally approved goal?”
+
+
+Introduces:
+
+semantic intent verification,
+
+goal drift detection,
+
+intent continuity enforcement.
+
+
+Shifts security from:
+
+identity-based authorization
+
+to
+
+intent-bound authorization.
+
+
+
+
+---
+
+2. Semantic Decision Tokens (SDT)
+
+Introduces short-lived, single-use authorization tokens for AI agents.
+
+Tokens are dynamically issued only when:
+
+intent matches,
+
+policy checks pass,
+
+contextual validation succeeds.
+
+
+Tokens can contain:
+
+allowed action,
+
+amount limits,
+
+approved recipient,
+
+geofence,
+
+time window,
+
+risk classification,
+
+expiration constraints.
+
+
+Core banking APIs never directly trust the AI agent.
+
+Banking execution is allowed only through valid SDTs.
+
+
+
+---
+
+3. Pre-Execution Semantic Enforcement
+
+Traditional fraud systems often detect issues after execution.
+
+SIBP validates actions before execution.
+
+Introduces a non-bypassable verification checkpoint between:
+
+AI reasoning,
+
+MCP tool execution,
+
+banking APIs.
+
+
+Prevents:
+
+autonomous fraud,
+
+prompt injection attacks,
+
+unauthorized workflow drift,
+
+unintended financial execution.
+
+
+
+
+---
+
+4. Immutable Decision Provenance
+
+Introduces tamper-resistant reasoning provenance for autonomous agents.
+
+Important events are permanently recorded:
+
+original intent,
+
+reasoning traces,
+
+approval decisions,
+
+contextual signals,
+
+denied actions,
+
+policy violations.
+
+
+Enables:
+
+regulator-grade auditability,
+
+forensic analysis,
+
+AI explainability,
+
+non-repudiation.
+
+
+Creates a “black box recorder” for AI-driven financial actions.
+
+
+
+---
+
+5. Contextual & Just-in-Time Permissioning
+
+Permissions are no longer permanently active.
+
+Execution authority dynamically changes based on:
+
+device trust,
+
+geolocation,
+
+transaction risk,
+
+time of access,
+
+behavioral anomalies,
+
+policy constraints.
+
+
+Introduces:
+
+capability attenuation,
+
+dynamic risk-based authorization,
+
+contextual execution governance.
+
+
+
+
+---
+
+6. Hardware-Anchored Autonomous Governance
+
+High-risk actions require physical human verification.
+
+Introduces hardware-backed approval for:
+
+large transfers,
+
+beneficiary changes,
+
+treasury operations,
+
+bulk data access.
+
+
+AI agents cannot bypass:
+
+biometrics,
+
+hardware security keys,
+
+trusted execution approvals.
+
+
+
+
+---
+
+7. Governance Layer for Agentic Banking
+
+SIBP acts as a distributed governance plane between:
+
+OS-level AI agents,
+
+MCP banking tools,
+
+enterprise systems,
+
+banking APIs.
+
+
+Introduces architectural separation between:
+
+reasoning systems,
+
+execution authority,
+
+financial operations.
+
+
+Enables safer adoption of:
+
+autonomous banking agents,
+
+AI-driven treasury workflows,
+
+enterprise financial automation,
+
+future agent-native banking ecosystems.
